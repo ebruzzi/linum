@@ -189,6 +189,6 @@ module.exports = function(grunt) {
   grunt.registerTask('production', ['rebuild', 'postcss:production', 'uglify:production' ]);
 
   // Standard Tasks
-  grunt.registerTask('build', [ 'sass', 'postcss', 'jshint', 'preprocess', 'clean:images', 'copy:starter', 'copy:images' ]);
+  grunt.registerTask('build', [ 'sass', 'postcss', 'jshint', 'preprocess', 'clean:images', 'copy:starter', 'copy:images', 'copy:jsincludes' ]);
   grunt.registerTask('default', [ 'build', 'browserSync', 'watch' ]);
 };
