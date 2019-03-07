@@ -1,266 +1,90 @@
-var maximized_height;
-var navOffset = $("#navigation").height() + $(".top-bar").height();
-var durationSize;
-
-function maxSize() {
-  //console.log(durationSize * 2);
-  return durationSize * 3;
+function debounce(fn, wait) {
+  var timeout;
+  return function () {
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      fn.apply(this, arguments);
+    }, (wait || 1));
+  };
 }
 
-(function () {
+window.addEventListener('resize', debounce(function () {
 
-var delayInMilliseconds = 1000; //1 second
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px' );
 
-  var maximize_jumbotron, maximize_container;
+}, 500));
 
-  // console.log(navOffset);
+(function() {
 
-  maximize_container = function (container, offset) {
+  (function($) {
 
-    if (offset == null) {
-      offset = 0;
-    }
+    var maximize_jumbotron, maximize_container;
+    // var navOffset = $("#navigation").height() + $(".top-bar").height();
+    var navOffset = 0;
 
-    maximized_height = $(window).height() - offset;
-    durationSize = $(window).height();
+    maximize_container = function(container, offset) {
+      var maximized_height;
+      if (offset == null) {
+        offset = 0;
+      }
 
-    return container.outerHeight(maximized_height);
-
-  };
-
-  maximize_jumbotron = function () {
-    // hero-tile id to be replace with div w/background-img
-    return maximize_container($('#hero'), navOffset);
-
-  };
-
-  maximize_jumbotron().promise().done(function(){
-    setTimeout(function() {
-        $('#hero').addClass('show-it');
-        $('.made-row').addClass('show-it');
-       // console.log('done');
-    }, delayInMilliseconds);
-
-  });
-
-  return $(window).on('resize', function () {
-    return {
-      max_j: maximize_jumbotron()
-      //max_second_j: maximize_second_jumbotron()
+      maximized_height = $(window).height() - offset;
+      return container.outerHeight(maximized_height);
     };
-  });
 
-}).call(this);
+    maximize_jumbotron = function() {
+      // hero-tile id to be replace with div w/background-img
+      return maximize_container($('#hero'), navOffset);
+    };
 
-// GM Modal
+    maximize_jumbotron();
+    return $(window).on('resize', function() {
+      return maximize_jumbotron();
+    });
 
-// Get the modal
-var modalGm = document.getElementById('gmModal');
+  }(jQuery));
 
-// Get the button that opens the modal
-var btnGm = $('.question-gm');
- //console.log(btnGm);
-// Get the <span> element that closes the modal
-var spanGm = document.getElementsByClassName("close-modal-gm")[0];
+  (function($) {
 
-// When the user clicks on the button, open the modal
-if (undefined !== btnGm && null !== btnGm) {
-  btnGm.on('click', function () {
-    modalGm.style.opacity = "1";
-    modalGm.style.top = "0px";
-  });
-}
+    // init controller
+    var parallaxController = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
 
-// When the user clicks on <span> (x), close the modal
-if (undefined !== spanGm && null !== spanGm) {
-  spanGm.onclick = function () {
-    modalGm.style.opacity = "0";
-    modalGm.style.top = "-999px";
-  };
-}
+    // build scenes
+    new ScrollMagic.Scene({triggerElement: "#hero.parallaxParent"})
+            .setTween("#hero.parallaxParent > .parallax-img", {y: "80%", ease: Linear.easeNone})
+            //.addIndicators()
+            .addTo(parallaxController);
 
-//youtube modal
-
-// Get the modal
-var modalcm = document.getElementById('videoModal');
-
-// Get the button that opens the modal
-var btn = document.getElementById('video') || document.getElementById('video-container');
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close-modal")[0];
-
-var player;
-
-var tag = document.createElement('script');
-tag.id = 'iframe-player';
-tag.src = 'https://www.youtube.com/iframe_api';
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-function onYouTubeIframeAPIReady() {
-
-  player = new YT.Player('video-placeholder', {
-    width: 1280,
-    height: 720,
-    videoId: btn.getAttribute('data-video-id'),
-    playerVars: {
-      modestbranding: 1,
-      showinfo:0,
-      color: 'white',
-      rel: 0
-    },
-    events: {
-      onReady: onPlayerReady,
-      onStateChange: onPlayerStateChange
-    }
-  });
-}
-
-function onPlayerReady() {
-  //console.log('ready');
-}
-
-function checkState(playerStatus) {
-
-  if (playerStatus == -1) {
-    // console.log('unstarted');
-  } else if (playerStatus == 0) {
-    // console.log('ended');
-    modalcm.style.visibility = "hidden";
-    modalcm.style.top = "-999px";
-    player.stopVideo();
-  } else if (playerStatus == 1) {
-    // console.log('playing');
-  } else if (playerStatus == 2) {
-    // console.log('paused');
-  } else if (playerStatus == 3) {
-    // console.log('buffering');
-  } else if (playerStatus == 5) {
-    // console.log('cued');
-  }
-
-}
-
-function onPlayerStateChange(event) {
-  checkState(event.data);
-}
-
-// When the user clicks on the button, open the modal
-if (undefined !== btn && null !== btn) {
-  btn.onclick = function () {
-    modalcm.style.visibility = "visible";
-    modalcm.style.top = "0px";
-    player.playVideo();
-  };
-}
-
-// When the user clicks on <span> (x), close the modal
-if (undefined !== span && null !== span) {
-  span.onclick = function () {
-    modalcm.style.visibility = "hidden";
-    modalcm.style.top = "-999px";
-    player.stopVideo();
-  };
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target == modalcm) {
-    modalcm.style.visibility = "hidden";
-    modalcm.style.top = "-999px";
-    player.stopVideo();
-  }
-};
-
-// vimeo video background
-
-if( $('#video-background').length ) {
-  hpVidFlag = false;
-  hpVid = $("#video-background");
-  hpVidWrap = $(".vid-wrap");
-
-  $(document).ready(function () {
-    hpVid.on(
-        "timeupdate",
-        function (event) {
-          if (this.currentTime >= 0.1 && hpVidFlag === false) {
-            hpVidFlag = false;
-            hpVidWrap.addClass('show-vid');
-            hpVid.off();
-          }
-
-        });
-  });
-
-}
-
-jQuery(document).ready(function () {
-
-  // Other animations
-
-  var duration = 0.35;
-  var stagger = 0.35;
-  var animationClass = 'show-item';
-
-   $(".a-link a").click(function(e) {
-        e.stopPropagation();
-   });
-
-  $('.shop-mob').on("click", function() {
-    var someClassName = $(this).find('.shop-item');
-    if ($(this).hasClass('hiding')) {
-      $(this).removeClass('hiding').addClass('showing');
-      TweenMax.staggerTo(someClassName, duration, {className: '+=' + animationClass}, stagger);
-    } else {
-      $(this).removeClass('showing').addClass('hiding');
-      TweenMax.staggerTo(someClassName, duration, {className: '-=' + animationClass}, stagger);
-    }
-
-  });
-
-  $('.plus-item').on("click", function() {
-    if ($(this).hasClass('hiding')) {
-      $(this).removeClass('hiding').addClass('showing');
-    } else {
-      $(this).removeClass('showing').addClass('hiding');
-    }
-
-  });
-
-  $('.base-layer-page').find('h3,li,p,span').each(function() {
+    $('.content-copy, .hero-content').find('h1,h2,h3,li,p,span').each(function() {
       $(this).html($(this).html().replace(/\s([^\s<]{0,11})\s*$/,'&nbsp;$1'));
-  });
+    });
 
-  // init controller
-  var controller = new ScrollMagic.Controller();
+    // init controller
+    var controller = new ScrollMagic.Controller();
 
-  var Pinscene = new ScrollMagic.Scene({triggerElement: "#mens-section",triggerHook:"1", duration: maxSize})
-          .on('enter leave', function () {
-            $("#womens-section .features-plus").toggleClass("fixed");
-            $("#static-copy").toggleClass("fixed");
-            $("#womens-section .avail-in").toggleClass("fixed");
-          })
-          //.addIndicators() // add indicators (requires plugin)
-          .addTo(controller);
-
-  $('.scrollable').each(function(){
+    $('.scrollable').each(function(){
       var currentShow = this;
 
       var sceneShow = new new ScrollMagic.Scene({triggerElement: currentShow, triggerHook: 'onEnter'})
       .setClassToggle(currentShow, 'show')
-    //.addIndicators()
+      .on('leave', function(e) {
+         // if (currentShow.classList.contains('sun')) {
+         //  sunTl.time(0);
+         // } else if (currentShow.classList.contains('odor')) {
+         //  odorTl.time(0);
+         // } else if (currentShow.classList.contains('sus')) {
+         //  tl.time(0);
+         // }
+      })
+      // .addIndicators()
       .addTo(controller);
-  });
+    }); 
 
-  $('.shop').click(function() {
+    }(jQuery));
 
-    if ( $(this).closest('.shop-item').hasClass('show-item') ) {
-      $(this).closest('.shop-item').removeClass('show-item');
-    } else {
-      $(this).closest('.shop-item').addClass('show-item');
-    }
+}).call(this);
 
-  });
 
-});
+
+

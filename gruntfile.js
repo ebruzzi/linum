@@ -4,7 +4,7 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     // Templates
-    projectName: "base-layer",
+    projectName: "tcreed",
 
     // Watch tasks
     watch: {
@@ -77,10 +77,12 @@ module.exports = function(grunt) {
       html: {
         files: {
           './dist/index.html': './build/index.html',
-          './dist/fr.html': './build/fr.html',
-          './dist/de.html': './build/de.html',
-          './dist/fr-ca.html': './build/fr-ca.html',
-          './dist/sh.html': './build/sh.html'
+          './dist/ecoware.html': './build/ecoware.html',
+          './dist/ceres-organics.html': './build/ceres-organics.html',
+          './dist/free-range.html': './build/free-range.html',
+          './dist/i-am-co.html': './build/i-am-co.html',
+          './dist/natural-things.html': './build/natural-things.html',
+          './dist/goodfor.html': './build/goodfor.html'
         }
       },
       js: {
