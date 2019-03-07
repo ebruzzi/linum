@@ -79,10 +79,11 @@ module.exports = function(grunt) {
           './dist/index.html': './build/index.html',
           './dist/ecoware.html': './build/ecoware.html',
           './dist/ceres-organics.html': './build/ceres-organics.html',
-          './dist/free-range.html': './build/free-range.html',
+          './dist/ever-kind.html': './build/ever-kind.html',
           './dist/i-am-co.html': './build/i-am-co.html',
-          './dist/natural-things.html': './build/natural-things.html',
-          './dist/goodfor.html': './build/goodfor.html'
+          './dist/matthew-hall.html': './build/matthew-hall.html',
+          './dist/goodfor.html': './build/goodfor.html',
+          './dist/la-cigale.html': './build/la-cigale.html'
         }
       },
       js: {
