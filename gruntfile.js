@@ -111,6 +111,7 @@ module.exports = function(grunt) {
     // Clean out image folder
     clean: {
       images: [ './dist/images/' ],
+      fonts: [ './dist/fonts/' ],
       all: [ './dist/' ]
     },
 
@@ -129,6 +130,14 @@ module.exports = function(grunt) {
           expand: true,
           cwd: './build/',
           src: 'images/**',
+          dest: './dist/'
+        }]
+      },
+      fonts: {
+        files: [{
+          expand: true,
+          cwd: './build/',
+          src: 'fonts/**',
           dest: './dist/'
         }]
       },
@@ -151,6 +160,7 @@ module.exports = function(grunt) {
           'dist/css/*.css',
           'dist/js/*.js',
           'dist/images/**/*',
+          'dist/fonts/**/*',
           'dist/**/*.html'
         ]
       },
@@ -186,7 +196,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   // Rebuild Task
-  grunt.registerTask('rebuild', ['clean:all', 'sass', 'postcss:dist', 'preprocess','copy:starter', 'copy:images', 'copy:jsincludes']);
+  grunt.registerTask('rebuild', ['clean:all', 'sass', 'postcss:dist', 'preprocess','copy:starter', 'copy:images', 'copy:fonts', 'copy:jsincludes']);
 
   // Production Build
   grunt.registerTask('production', ['rebuild', 'postcss:production', 'uglify:production' ]);

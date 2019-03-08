@@ -34,11 +34,22 @@
 	  &.home {
 	  	width:100%;
 	  	width:100vw;
+	  	h1 {
+	  		margin-bottom: 10px;
+	  	}
+	  	p {
+		    max-width: 720px;
+		    font-size: 20px;
+		    color: #fff;
+		    padding: 0px 15px;
+		    margin: 0 auto 60px auto;
+		    letter-spacing: 1px;
+	  	}
 	  }
 	}
 
 	.overlay {
-	  background: rgba(0,0,0,0.2);
+	  background: rgba(0,0,0,0.4);
 	  position: absolute;
 	  top: 0;
 	  left: 0;
@@ -127,4 +138,68 @@ img.scrollable {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+.mailto {
+	position: absolute;
+	right:30px;
+	top:28px;
+	color:#fff;
+	text-decoration:underline;
+	font-family: "garamond-premier-pro-display", sans-serif;
+	font-size:22px;
+	z-index: 90;
+	&:hover {
+		color: #fff;
+	}
+}
+
+.social-w {
+    position: absolute;
+    z-index: 90;
+    text-align: center;
+    height: 32px;
+    top: 30px;
+    left: 30px;
+	@include breakpoint(xxxs-max) {
+		height:28px;
+	}
+
+	a {
+		outline:none;
+		display: inline-block;
+		margin: 0 20px 0 0;
+		&:last-of-type {
+			margin:0;
+		}
+		&:focus {
+			outline:none;
+		}
+	}
+	img, .insta-icon-svg, .pinterest-icon-svg {
+		width:32px;
+		height: 32px;
+		@include breakpoint(xxxs-max) {
+			width:28px;
+			height:28px;
+		}
+	}
+
+	.insta-icon-svg:not(:hover) {
+		svg g path {
+			fill: #FFFFFF;
+		}
+	}
+
+	.pinterest-icon-svg {
+		.st0{fill:transparent;}
+    	.st1{fill:#FFFFFF;}
+    	.st0, .st1 {
+    		@include transition(fill, 0.35s, ease);
+    	}
+    	&:hover {
+			.st0{fill:#FFFFFF;}
+	    	.st1{fill:#BD081C;}
+    	}
+	}
 }
