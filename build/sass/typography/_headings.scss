@@ -26,17 +26,17 @@ h2 {
 		@include breakpoint(sm) {
 			font-size: 76px;
 		}
+		@include breakpoint(xxxs-max) {
+		font-size:40px;
+		}
 	}
 }
 
 
 p {
-	font-size:17px;
-	@include breakpoint(sm) {
-		font-size:22px;
-	}
+	font-size:16px;
 	margin-top:0px;
-	margin-bottom: 25px;
+	margin-bottom: 15px;
 	font-family: $font__main;
 }
 
@@ -88,44 +88,4 @@ big {
 
 .regular {
 	font-family:'apercu-regular-pro', sans-serif;
-}
-
-
-.work-list {
-	padding:0;
-	margin: 0;
-    text-align: center;
-	li {
-	    list-style: none;
-	    display: inline-block;
-	    padding: 0px;
-	    margin: 12px 2.5%;
-	    position: relative;
-		a {
-		outline:none; 
-		color: white;
-		text-decoration: none;
-	    font-size: 26px;
-	    padding: 10px 0px;
-		font-family: "garamond-premier-pro-display", sans-serif;
-		font-weight: 300;
-		font-style: normal;
-		letter-spacing: 1px;
-		    &:hover {
-		    	&:after {
-		    		width: 100%;
-		    	}
-		    }
-		    &:after {
-			    content: "";
-			    width: 0%;
-			    height: 1px;
-			    background-color: #fff;
-			    display: block;
-			    bottom: 0;
-			    left: 0;
-			    @include transition(width, 0.5s, ease-in); 
-		    }
-		}
-	}
 }

@@ -47,3 +47,32 @@ textarea {
 }
 
 @import "headings";
+
+
+.wf-loading {
+/* styles to use when web fonts are loading */
+    h1, .work-list li a, a.mailto {
+        opacity:0;
+    }
+
+}
+ 
+.wf-active {
+/* styles to use when web fonts are active */
+    h1, .work-list li a, a.mailto {
+        opacity:1;
+    }
+    
+}
+ 
+.wf-inactive {
+/* styles to use when web fonts are inactive */
+    h1, .work-list li a, a.mailto {
+        opacity:0;
+    }
+}
+
+h1, .work-list li a, a.mailto {
+    opacity:0;
+    @include transition(opacity 0.2s ease);
+}
