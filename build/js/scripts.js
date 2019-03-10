@@ -39,9 +39,13 @@
     };
 
     maximize_jumbotron();
-    return $(window).on('resize', function() {
-      return maximize_jumbotron();
-    });
+    var screen = $(window);
+    if (screen.width() > 768) {
+      return $(window).on('resize', function() {
+        return maximize_jumbotron();
+      });
+    }
+
 
   }(jQuery));
 

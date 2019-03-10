@@ -48,8 +48,11 @@
 	  	}
 	  	p {
 		    max-width: 720px;
-		    margin: 0 auto 60px auto;
+		    margin: 0 auto 30px auto;
 		    font-size: 20px;
+		    @include breakpoint(sm) {
+		        margin: 0 auto 60px auto;
+			}
 		    @include breakpoint(xs) {
 		        font-size: 16px;
 			}
@@ -292,13 +295,15 @@ img.scrollable {
     	position: relative;
     	left: 0;
     	transform: translate(0,0);
+    	text-align: left;
     }
 
 }
 
 .contact-end {
 	a {
-		font-weight: bold;
+		font-family: "garamond-premier-pro-display", sans-serif;
+	    font-size: 22px;
 		color: #000;
 	}
 }
