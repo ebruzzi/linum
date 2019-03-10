@@ -15,6 +15,15 @@
 
 // }, 500));
 
+if( /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+ // some code..
+ document.documentElement.className += ' ' + 'is-mob';
+ var isMobile = true;
+} else {
+ document.documentElement.className += ' ' + 'is-desk';
+ var isMobile = false;
+}
+
 (function() {
 
   (function($) {
@@ -40,7 +49,7 @@
 
     maximize_jumbotron();
     var screen = $(window);
-    if (screen.width() > 768) {
+    if (isMobile === false ) {
       return $(window).on('resize', function() {
         return maximize_jumbotron();
       });
