@@ -22,6 +22,7 @@ h2 {
 #hero {
 	h1 {
 		color:#FFF;
+		margin-bottom: 0;
 		font-size: 50px;
 		@include breakpoint(sm) {
 			font-size: 76px;

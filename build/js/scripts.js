@@ -59,6 +59,7 @@
               .setClassToggle('#hero', 'is-active')
               .addTo(parallaxController);
 
+    }
       // $('.content-copy, .hero-content').find('h1,h2,h3,li,p,span').each(function() {
       //   $(this).html($(this).html().replace(/\s([^\s<]{0,11})\s*$/,'&nbsp;$1'));
       // });
@@ -83,8 +84,6 @@
         // .addIndicators()
         .addTo(controller);
       }); 
-
-    }
     
 
   }(jQuery));
