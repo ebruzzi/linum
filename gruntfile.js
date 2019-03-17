@@ -83,6 +83,7 @@ module.exports = function(grunt) {
           './dist/i-am-co.html': './build/i-am-co.html',
           './dist/matthew-hall.html': './build/matthew-hall.html',
           './dist/goodfor.html': './build/goodfor.html',
+          './dist/kokako.html': './build/kokako.html',
           './dist/la-cigale.html': './build/la-cigale.html'
         }
       },
