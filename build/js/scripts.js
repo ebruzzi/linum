@@ -60,43 +60,7 @@ if( /Mobi|Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(n
 
   (function($) {
 
-    if ($(".parallaxParent")[0]){
-      
-      // init controller
-      var parallaxController = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
 
-      // build scenes
-      new ScrollMagic.Scene({triggerElement: "#hero.parallaxParent"})
-              .setTween("#hero.parallaxParent > .parallax-img", {y: "80%", ease: Linear.easeNone})
-              //.addIndicators()
-              .setClassToggle('#hero', 'is-active')
-              .addTo(parallaxController);
-
-    }
-      // $('.content-copy, .hero-content').find('h1,h2,h3,li,p,span').each(function() {
-      //   $(this).html($(this).html().replace(/\s([^\s<]{0,11})\s*$/,'&nbsp;$1'));
-      // });
-
-      // init controller
-      var controller = new ScrollMagic.Controller();
-
-      $('.scrollable').each(function(){
-        var currentShow = this;
-
-        var sceneShow = new new ScrollMagic.Scene({triggerElement: currentShow, triggerHook: 'onEnter'})
-        .setClassToggle(currentShow, 'show')
-        .on('leave', function(e) {
-           // if (currentShow.classList.contains('sun')) {
-           //  sunTl.time(0);
-           // } else if (currentShow.classList.contains('odor')) {
-           //  odorTl.time(0);
-           // } else if (currentShow.classList.contains('sus')) {
-           //  tl.time(0);
-           // }
-        })
-        // .addIndicators()
-        .addTo(controller);
-      }); 
     
 
   }(jQuery));

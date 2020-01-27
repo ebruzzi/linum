@@ -4,7 +4,7 @@
 module.exports = function(grunt) {
   grunt.initConfig({
     // Templates
-    projectName: "tcreed",
+    projectName: "linum",
 
     // Watch tasks
     watch: {
@@ -76,15 +76,7 @@ module.exports = function(grunt) {
       },
       html: {
         files: {
-          './dist/index.html': './build/index.html',
-          './dist/ecoware.html': './build/ecoware.html',
-          './dist/ceres-organics.html': './build/ceres-organics.html',
-          './dist/ever-kind.html': './build/ever-kind.html',
-          './dist/i-am-co.html': './build/i-am-co.html',
-          './dist/matthew-hall.html': './build/matthew-hall.html',
-          './dist/goodfor.html': './build/goodfor.html',
-          './dist/kokako.html': './build/kokako.html',
-          './dist/la-cigale.html': './build/la-cigale.html'
+          './dist/index.html': './build/index.html'
         }
       },
       js: {
