@@ -9,7 +9,7 @@
     "url": ""
   },
   "devDependencies": {
-    "async": "^1.2.1",
+    "async": "^2.6.4",
     "autoprefixer": "^7.1.2",
     "cssnano": "^3.10.0",
     "glob": "^5.0.10",
