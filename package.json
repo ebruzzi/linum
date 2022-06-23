@@ -23,7 +23,7 @@
     "grunt-postcss": "^0.8.0",
     "grunt-preprocess": "^4.2.0",
     "grunt-shell": "^1.1.2",
-    "jsdom": "^3.x.x",
+    "jsdom": "^16.x.x",
     "nightmare": "^1.8.2",
     "optimist": "^0.6.1",
     "request": "^2.58.0",
